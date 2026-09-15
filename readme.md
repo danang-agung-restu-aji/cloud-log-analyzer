@@ -11,7 +11,7 @@ Sebuah **web app AI Log Analyzer** yang:
 - Menghasilkan analisis: root cause, severity, dampak, langkah fix & pencegahan
 - Mendukung **follow-up chat** untuk pertanyaan lanjutan
 
-**Output akhir**: File `index.html` yang bisa dibuka langsung di browser — **zero install**.
+**Output akhir**: File `index.html` yang bisa dibuka langsung di browser  **zero install**.
 
 ---
 
@@ -31,7 +31,7 @@ Sebuah **web app AI Log Analyzer** yang:
 ### Talking Points untuk Fasilitator
 
 **"Kenapa AI untuk SRE?"**
-> Kita rata-rata ngabisin 20-40 menit buat diagnosa satu incident. Dengan AI, bisa dipotong jadi 2 menit. Bukan replace kita — tapi jadi first responder yang cepat."
+> Kita rata-rata ngabisin 20-40 menit buat diagnosa satu incident. Dengan AI, bisa dipotong jadi 2 menit. Bukan replace kita  tapi jadi first responder yang cepat."
 
 **"Kenapa Huawei MAAS?"**
 > - OpenAI-compatible API → gampang integrasi
@@ -53,7 +53,7 @@ Sebuah **web app AI Log Analyzer** yang:
 4. **Buat API Key**:
    - Klik profile → "My API Keys" atau di MaaS Console sidebar
    - Klik "Create API Key"
-   - **Copy dan simpan** — tidak bisa dilihat lagi!
+   - **Copy dan simpan**  tidak bisa dilihat lagi!
 5. **Catat endpoint**:
    ```
    https://api-ap-southeast-1.modelarts-maas.com/v1/chat/completions
@@ -61,7 +61,7 @@ Sebuah **web app AI Log Analyzer** yang:
 
 > [!IMPORTANT]
 > **Fasilitator**: Siapkan 1 API Key backup untuk peserta yang stuck di langkah ini.
-> Jangan share ke grup — gunakan pastebin private / QR code dengan expired time.
+> Jangan share ke grup  gunakan pastebin private / QR code dengan expired time.
 
 ---
 
@@ -248,7 +248,7 @@ async function sendFollowup() {
 }
 ```
 
-**Poin diskusi**: "API ini stateless — kita yang harus manage history. Ini pola yang sama di semua LLM API."
+**Poin diskusi**: "API ini stateless  kita yang harus manage history. Ini pola yang sama di semua LLM API."
 
 ---
 
@@ -271,7 +271,7 @@ Buka `index.html` yang sudah disiapkan → walkthrough fitur:
 
 ### Skenario Demo yang Menarik
 
-1. **"Coba paste log dari sistem kalian"** — biarkan peserta input log nyata
+1. **"Coba paste log dari sistem kalian"**  biarkan peserta input log nyata
 2. **Follow-up challenge**: Setelah analisis OOM, tanya: *"Gimana cara monitor ini pakai Prometheus?"*
 3. **Ganti system prompt live**: Ubah jadi Bahasa Inggris atau tambah konteks spesifik
 
@@ -279,10 +279,10 @@ Buka `index.html` yang sudah disiapkan → walkthrough fitur:
 
 | Pertanyaan | Jawaban |
 |------------|---------|
-| "Apakah log kita aman?" | Log dikirim ke API Huawei — pastikan tidak ada credential di log. Untuk production: consider on-premise deployment. |
-| "Bisa pakai model lain?" | Ya! Ganti `MODEL` ke `DeepSeek-V4-Flash` atau `Qwen3` — format API sama. |
+| "Apakah log kita aman?" | Log dikirim ke API Huawei  pastikan tidak ada credential di log. Untuk production: consider on-premise deployment. |
+| "Bisa pakai model lain?" | Ya! Ganti `MODEL` ke `DeepSeek-V4-Flash` atau `Qwen3`  format API sama. |
 | "Bisa diintegrasikan ke Slack/PagerDuty?" | Ya, tambahkan webhook call setelah dapat response AI. |
-| "Biaya API-nya berapa?" | Cek pricing di console — ada free tier untuk trial. |
+| "Biaya API-nya berapa?" | Cek pricing di console  ada free tier untuk trial. |
 
 ---
 
