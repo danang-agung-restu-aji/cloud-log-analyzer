@@ -1,0 +1,1 @@
+1. perlu ditambahkan kode klasifikasi dan sistem NLP untuk pembuatan summary dan menghapus redundansi text log sehingga menghemat konsumsi token
