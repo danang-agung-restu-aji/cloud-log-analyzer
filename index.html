@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SRE Log Analyzer - Powered by Huawei MAAS</title>
+  <meta name="description" content="AI-powered log analyzer for SRE/DevOps teams using Huawei Cloud MAAS API" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="brand-icon">L</div>
+      <div class="brand-text">
+        <h1>SRE Log Analyzer</h1>
+        <span>Powered by Huawei Cloud MAAS</span>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-model">GLM-5.2</span>
+      <span class="badge badge-status">Ready</span>
+    </div>
+  </header>
+
+  <div class="config-bar">
+    <span class="config-label">API Key:</span>
+    <input type="password" id="api-key-input" class="config-input" placeholder="Enter MAAS API Key..." />
+    <button class="btn-save" onclick="saveApiKey()">Save Key</button>
+    <span class="config-label" style="margin-left:8px">Endpoint:</span>
+    <input type="text" id="endpoint-input" class="config-input"
+      value="https://api-ap-southeast-1.modelarts-maas.com/v1/chat/completions" placeholder="MAAS endpoint URL" />
+  </div>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Log Input</div>
+        <div class="panel-actions">
+          <button class="btn-ghost" onclick="loadSample('oom')">OOM Sample</button>
+          <button class="btn-ghost" onclick="loadSample('db')">DB Error</button>
+          <button class="btn-ghost" onclick="loadSample('k8s')">K8s Sample</button>
+        </div>
+      </div>
+      <div class="log-input-wrapper">
+        <textarea id="log-input" placeholder="Paste error log or stack trace here...
+
+Example:
+2024-01-15 03:42:11 ERROR [main] OutOfMemoryError: Java heap space
+  at java.util.Arrays.copyOf(Arrays.java:3210)
+
+Or click a sample button above to try it directly!"></textarea>
+        <div class="log-counter" id="log-counter">0 lines</div>
+      </div>
+      <div class="samples-bar">
+        <span class="samples-label">Quick samples:</span>
+        <span class="sample-chip" onclick="loadSample('nginx')">Nginx 502</span>
+        <span class="sample-chip" onclick="loadSample('timeout')">Timeout</span>
+        <span class="sample-chip" onclick="loadSample('disk')">Disk Full</span>
+        <span class="sample-chip" onclick="loadSample('cert')">SSL Cert</span>
+      </div>
+      
+      <!-- RAG Knowledge Base Panel -->
+      <div class="rag-panel">
+        <div class="rag-panel-header" onclick="toggleRagPanel()">
+          <div class="rag-panel-title">Knowledge Base / Runbooks <span class="rag-panel-count" id="rag-panel-count">0</span></div>
+          <div class="rag-chevron" id="rag-chevron">▼</div>
+        </div>
+        <div class="rag-panel-body" id="rag-panel-body">
+          <div class="rag-upload-area">
+            <label class="rag-upload-label">
+              Upload Runbook
+              <span class="rag-upload-hint">(.txt, .md)</span>
+              <input type="file" id="rag-file-input" class="rag-file-input" accept=".txt,.md,.log" onchange="handleRagUpload(event)">
+            </label>
+            <button class="btn-rag-add" onclick="document.getElementById('rag-file-input').click()">+ Add Document</button>
+          </div>
+          <div class="rag-doc-list" id="rag-doc-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="analyze-bar">
+        <button class="btn-analyze" id="analyze-btn" onclick="analyzeLog()">Analyze with AI</button>
+        <button class="btn-clear-all" onclick="clearAll()">Clear</button>
+      </div>
+    </div>
+
+    <div class="output-panel">
+      <div class="panel-header">
+        <div class="panel-title">AI Analysis Result</div>
+        <div class="panel-actions">
+          <button class="btn-ghost" onclick="clearOutput()">Clear Output</button>
+        </div>
+      </div>
+      <div class="output-content" id="output-area">
+        <div class="empty-state" id="empty-state">
+          <h3>Paste log, click Analyze</h3>
+          <p>AI will diagnose the root cause,<br />explain the impact, and provide<br />actionable solutions.</p>
+        </div>
+      </div>
+      <div class="followup-bar">
+        <input type="text" id="followup-input" class="followup-input"
+          placeholder="Ask a follow-up... (e.g., 'How to fix this in K8s?')"
+          onkeydown="if(event.key==='Enter') sendFollowup()" />
+        <button class="btn-send" onclick="sendFollowup()" id="send-btn">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+
+  <!-- Load JS Modules in order (using global variables) -->
+  <script src="js/config.js"></script>
+  <script src="js/rag.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
