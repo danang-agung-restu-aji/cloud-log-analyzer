@@ -1,4 +1,4 @@
-#  Workshop Guide: SRE Log Analyzer dengan Huawei MAAS API
+#  Workshop Guide: Cloud Log Analyzer dengan Huawei MAAS API
 > **Durasi**: 30 Menit | **Audience**: SRE / DevOps | **Level**: Menengah (familiar HTML/JS)
 
 ---
@@ -80,10 +80,10 @@ Buka VS Code, buat file baru `index.html`. Build **incremental**:
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>SRE Log Analyzer</title>
+  <title>Cloud Log Analyzer</title>
 </head>
 <body>
-  <h1> SRE Log Analyzer</h1>
+  <h1> Clouc Log Analyzer</h1>
   <textarea id="log-input" rows="10" cols="60"
     placeholder="Paste log error di sini..."></textarea>
   <br>
